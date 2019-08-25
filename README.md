@@ -6,10 +6,10 @@ Queue kata simulate a queue at the Family grocery store.
 * First-in-first-out (FIFO) queue
 * Senior citizen got prioritized in the queue, senior age starts from 62 years old
 * Among senior citizens, FIFO applies
-* These items can't be bought by customer under 18 and senior citizens: `cigarette`, `alcohol`. Any findings will be excluded from the queue
+* Some items can't be bought by customer under 18 and senior citizens: `cigarette`, `alcohol`. Any findings will be *excluded* from the queue
 
 ## How to
-Refactor the initial code so that the code is reflect clean code principles:
+Refactor the initial code so that the code reflects clean code principles.
 * Readable, easy to understand
 * Extensible, easy to add new feature
 
