@@ -36,7 +36,19 @@ def test_senior_citizens():
 
     assert [cust.id for cust in q.items] == [4, 6, 1, 2, 3, 5]
 
-def test_underage_for_prohibited_items():
+def test_all_seniors():
+    q = Queue()
+
+    q.add_item(Customer(1, 62, ["biscuit", "chips"]))
+    q.add_item(Customer(2, 63, ["milk"]))
+    q.add_item(Customer(3, 77, ["soap"]))
+    q.add_item(Customer(4, 70, ["bread"]))
+    q.add_item(Customer(5, 78, ["milk"]))
+    q.add_item(Customer(6, 63, ["soap"]))
+
+    assert [cust.id for cust in q.items] == [1,2,3,4,5,6]
+
+def test_prohibited_items():
     q = Queue()
 
     q.add_item(Customer(1, 16, ["biscuit", "chips", "alcohol"]))
@@ -47,3 +59,12 @@ def test_underage_for_prohibited_items():
     q.add_item(Customer(6, 88, ["soap"]))
 
     assert [cust.id for cust in q.items] == [6, 2, 4, 5]
+
+
+def test_all_prohibited():
+    q = Queue()
+
+    q.add_item(Customer(1, 16, ["biscuit", "chips", "alcohol"]))
+    q.add_item(Customer(3, 76, ["alcohol"]))
+
+    assert [cust.id for cust in q.items] == []
