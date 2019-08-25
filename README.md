@@ -1,4 +1,4 @@
-# Queue Kata
+# Family Grocery Kata
 A very simple python kata, for clean code basic exercise.
 
 ## Requirements
