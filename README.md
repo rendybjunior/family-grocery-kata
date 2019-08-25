@@ -15,7 +15,8 @@ Refactor the initial code so that the code reflects clean code principles.
 
 The exercise steps:
 * Create your own branch using pattern `kata/<github username>`
-* Refactor the code, run `pytest` to ensure your code is running correctly
+* Refactor the code
+* Run `pytest` to ensure your code is running correctly
 * Create a Pull Review and request
 
 Bonus:
