@@ -1,7 +1,7 @@
-from queue_kata import Customer, Queue
+from queue_kata import Customer, FamilyGroceryQueue
 
 def test_firstlast_happypath():
-    q = Queue()
+    q = FamilyGroceryQueue()
 
     q.add_customer(Customer(1, 6, ["biscuit", "chips"]))
     q.add_customer(Customer(2, 23, ["milk"]))
@@ -11,7 +11,7 @@ def test_firstlast_happypath():
     assert q.last().id == 3
 
 def test_len():
-    q = Queue()
+    q = FamilyGroceryQueue()
 
     assert q.length() == 0
 
@@ -25,7 +25,7 @@ def test_len():
     assert q.length() == 11
 
 def test_senior_citizens():
-    q = Queue()
+    q = FamilyGroceryQueue()
 
     q.add_customer(Customer(1, 6, ["biscuit", "chips"]))
     q.add_customer(Customer(2, 43, ["milk"]))
@@ -37,7 +37,7 @@ def test_senior_citizens():
     assert [cust.id for cust in q.customers] == [4, 6, 1, 2, 3, 5]
 
 def test_all_seniors():
-    q = Queue()
+    q = FamilyGroceryQueue()
 
     q.add_customer(Customer(1, 62, ["biscuit", "chips"]))
     q.add_customer(Customer(2, 63, ["milk"]))
@@ -49,7 +49,7 @@ def test_all_seniors():
     assert [cust.id for cust in q.customers] == [1,2,3,4,5,6]
 
 def test_prohibited_items():
-    q = Queue()
+    q = FamilyGroceryQueue()
 
     q.add_customer(Customer(1, 16, ["biscuit", "chips", "alcohol"]))
     q.add_customer(Customer(2, 43, ["milk"]))
@@ -62,7 +62,7 @@ def test_prohibited_items():
 
 
 def test_all_prohibited():
-    q = Queue()
+    q = FamilyGroceryQueue()
 
     q.add_customer(Customer(1, 16, ["biscuit", "chips", "alcohol"]))
     q.add_customer(Customer(3, 76, ["alcohol"]))
