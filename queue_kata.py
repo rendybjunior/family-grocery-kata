@@ -9,20 +9,26 @@ class Queue:
         self.items = []
 
     # Add new item
+
     def add_item(self, x):
-        if x.age < 62:
-            if x.age < 18:
+
+        special_items =[]
+        special_items =["cigarette", "alcohol"]
+        upper_treshold_age =62
+        lower_treshold_age =18
+
+        if x.age < upper_treshold_age:
+            if x.age < lower_treshold_age:
                 for item in x.items:
-                    if item in ["cigarette", "alcohol"]:
+                    if item in special_items:
                         return
             self.items.append(x)
-        if x.age >=62:
+        if x.age >=upper_treshold_age:
             for item in x.items:
-                if item in ["cigarette", "alcohol"]: # prohibited items
+                if item in special_items: # prohibited items
                     return
-            pos = 0
             i = 0
-            while i < len(self.items) and self.items[i].age >= 62:
+            while i < len(self.items) and self.items[i].age >= upper_treshold_age:
                 i += 1
             # print(i)
             self.items.insert(i, x)
