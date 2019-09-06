@@ -1,8 +1,8 @@
 class Customer:
-    def __init__(self, id, age, items):
+    def __init__(self, id, age, cart):
         self.id = id
         self.age = age
-        self.items = items # list of string
+        self.cart = cart # list of string
 
 class Queue:
     def __init__(self):
@@ -11,7 +11,7 @@ class Queue:
         self.LEGAL_AGE=18
 
     # Add new item
-    def add_item(self, customer):
+    def add_queue(self, customer):
         if(not self.isNotLegalCustomer(customer)):
             if customer.age >=self.SENIOR_AGE:
                 self.queue.insert(self.getLastSeniorQueueNumber(), customer)
@@ -33,7 +33,7 @@ class Queue:
 
     # Return confirmation for having prohibited items
     def isHavingProhibitedItems(self, customer):
-        for item in customer.items:
+        for item in customer.cart:
             if item in ["cigarette", "alcohol"]:
                 return True
         return False
