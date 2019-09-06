@@ -19,7 +19,7 @@ class Queue:
 
     def getLastSeniorQueueNumber(self):
         queue_number = 0
-        while queue_number < self.length() and self.queue[queue_number].age >= self.SENIOR_AGE:
+        while queue_number < self.customerCount() and self.queue[queue_number].age >= self.SENIOR_AGE:
             queue_number += 1
         return queue_number
 
