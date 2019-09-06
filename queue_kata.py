@@ -19,11 +19,13 @@ class Queue:
 
     def getLastSeniorQueueNumber(self):
         queue_number = 0
-        while queue_number < self.length() and self.queue[queue_number].age >= self.SENIOR_AGE: queue_number += 1
+        while queue_number < self.length() and self.queue[queue_number].age >= self.SENIOR_AGE:
+            queue_number += 1
         return queue_number
 
     def isLegalCustomer(self, customer):
-        if (customer.age < self.SENIOR_AGE and customer.age >= self.LEGAL_AGE): return True
+        if (customer.age < self.SENIOR_AGE and customer.age >= self.LEGAL_AGE):
+            return True
         return self.isNotHavingProhibitedItems(customer)
 
     def isNotHavingProhibitedItems(self, customer):
@@ -31,11 +33,11 @@ class Queue:
             if item in ["cigarette", "alcohol"]: return False
         return True
 
-    def first(self):
+    def firstCustomer(self):
         return self.queue[0]
 
-    def last(self):
+    def lastCustomer(self):
         return self.queue[-1]
 
-    def length(self):
+    def customerCount(self):
         return len(self.queue)

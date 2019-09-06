@@ -7,22 +7,22 @@ def test_firstlast_happypath():
     q.addQueue(Customer(2, 23, ["milk"]))
     q.addQueue(Customer(3, 55, ["soap"]))
 
-    assert q.first().id == 1
-    assert q.last().id == 3
+    assert q.firstCustomer().id == 1
+    assert q.lastCustomer().id == 3
 
 def test_len():
     q = Queue()
 
-    assert q.length() == 0
+    assert q.customerCount() == 0
 
     q.addQueue(Customer(1, 6, ["biscuit", "chips"]))
 
-    assert q.length() == 1
+    assert q.customerCount() == 1
 
     for i in range(10):
         q.addQueue(Customer(1, 6, ["biscuit", "chips"]))
 
-    assert q.length() == 11
+    assert q.customerCount() == 11
 
 def test_senior_citizens():
     q = Queue()
