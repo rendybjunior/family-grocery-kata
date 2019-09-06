@@ -34,7 +34,7 @@ def test_senior_citizens():
     q.add_item(Customer(5, 34, ["milk"]))
     q.add_item(Customer(6, 62, ["soap"]))
 
-    assert [cust.id for cust in q.items] == [4, 6, 1, 2, 3, 5]
+    assert [cust.id for cust in q.queue] == [4, 6, 1, 2, 3, 5]
 
 def test_all_seniors():
     q = Queue()
@@ -46,7 +46,7 @@ def test_all_seniors():
     q.add_item(Customer(5, 78, ["milk"]))
     q.add_item(Customer(6, 63, ["soap"]))
 
-    assert [cust.id for cust in q.items] == [1,2,3,4,5,6]
+    assert [cust.id for cust in q.queue] == [1,2,3,4,5,6]
 
 def test_prohibited_items():
     q = Queue()
@@ -58,7 +58,7 @@ def test_prohibited_items():
     q.add_item(Customer(5, 34, ["milk"]))
     q.add_item(Customer(6, 88, ["soap"]))
 
-    assert [cust.id for cust in q.items] == [6, 2, 4, 5]
+    assert [cust.id for cust in q.queue] == [6, 2, 4, 5]
 
 
 def test_all_prohibited():
@@ -67,4 +67,4 @@ def test_all_prohibited():
     q.add_item(Customer(1, 16, ["biscuit", "chips", "alcohol"]))
     q.add_item(Customer(3, 76, ["alcohol"]))
 
-    assert [cust.id for cust in q.items] == []
+    assert [cust.id for cust in q.queue] == []
