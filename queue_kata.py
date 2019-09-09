@@ -14,7 +14,7 @@ class Queue:
 
     def addQueue(self, customer):
         if(self.isLegalCustomer(customer)):
-            if customer.age >=self.SENIOR_AGE: self.queue.insert(self.getLastSeniorQueueNumber(), customer)
+            if customer.age >= self.SENIOR_AGE: self.queue.insert(self.getLastSeniorQueueNumber(), customer)
             else: self.queue.append(customer)
 
     def getLastSeniorQueueNumber(self):
