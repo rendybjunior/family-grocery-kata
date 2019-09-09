@@ -1,40 +1,51 @@
 class Customer:
-    def __init__(self, id, age, items):
+    def __init__(self, id, age, groceries):
         self.id = id
         self.age = age
-        self.items = items # list of string
+        self.groceries = groceries
 
 class Queue:
     def __init__(self):
-        self.items = []
+        self.queueLine = []
+        self.prohibitedGroceries = ["cigarette", "alcohol"]
+        self.seniorAge = 62
+        self.adultAge = 18
+        self.lastSeniorQueueIndex = 0
 
-    # Add new item
-    def add_item(self, x):
-        if x.age < 62:
-            if x.age < 18:
-                for item in x.items:
-                    if item in ["cigarette", "alcohol"]:
-                        return
-            self.items.append(x)
-        if x.age >=62:
-            for item in x.items:
-                if item in ["cigarette", "alcohol"]: # prohibited items
-                    return
-            pos = 0
-            i = 0
-            while i < len(self.items) and self.items[i].age >= 62:
-                i += 1
-            # print(i)
-            self.items.insert(i, x)
+    # Add new customer to queue line
+    def add_to_queue(self, customer):
 
-    # Return first item
-    def first(self):
-        return self.items[0]
+        def _is_senior(age):
+            return True if age >= self.seniorAge else False
+        
+        def _is_adult(age):
+            return True if age >= self.adultAge else False
 
-    # Return last item
-    def last(self):
-        return self.items[-1]
+        def _remove_prohobited_grocery(groceries):
+            for grocery in groceries:
+                if grocery in self.prohibitedGroceries:
+                    groceries.remove(grocery)
+
+        if not _is_senior(customer.age):
+            if not _is_adult(customer.age):
+                _remove_prohobited_grocery(customer.groceries)
+            if len(customer.groceries) is not 0:
+                self.queueLine.append(customer)
+        if _is_senior(customer.age):
+            _remove_prohobited_grocery(customer.groceries)
+            if len(customer.groceries) is not 0:
+                while self.lastSeniorQueueIndex < len(self.queueLine) and _is_senior(self.queueLine[self.lastSeniorQueueIndex].age):
+                    self.lastSeniorQueueIndex += 1
+                self.queueLine.insert(self.lastSeniorQueueIndex, customer)
+
+    # Return first queue
+    def get_first_queue(self):
+        return self.queueLine[0]
+
+    # Return last queue
+    def get_last_queue(self):
+        return self.queueLine[-1]
 
     # Return queue length
-    def length(self):
-        return len(self.items)
+    def get_queue_length(self):
+        return len(self.queueLine)
