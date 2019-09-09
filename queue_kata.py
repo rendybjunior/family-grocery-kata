@@ -8,7 +8,7 @@ class QueueSeniorPrioritization:
     
     PROHIBITED_GROCERIES = ["cigarette", "alcohol"]
     SENIOR_AGE_THRESHOLD = 62
-    ADULT_AGE_THRESHOLD = 18
+    UNDER_AGE_THRESHOLD = 18
     LAST_SENIOR_QUEUE_INDEX = 0
 
     def __init__(self):
@@ -19,8 +19,8 @@ class QueueSeniorPrioritization:
         def _is_senior(age):
             return age >= QueueSeniorPrioritization.SENIOR_AGE_THRESHOLD
         
-        def _is_adult(age):
-            return age >= QueueSeniorPrioritization.ADULT_AGE_THRESHOLD
+        def _is_under_age(age):
+            return age <= QueueSeniorPrioritization.UNDER_AGE_THRESHOLD
 
         def _remove_prohobited_grocery(groceries):
             for grocery in groceries:
@@ -28,7 +28,7 @@ class QueueSeniorPrioritization:
                     groceries.remove(grocery)
 
         if not _is_senior(customer.age):
-            if not _is_adult(customer.age):
+            if not _is_under_age(customer.age):
                 _remove_prohobited_grocery(customer.groceries)
             if len(customer.groceries) is not 0:
                 self.queueLine.append(customer)
