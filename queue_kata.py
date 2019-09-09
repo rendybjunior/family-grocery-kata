@@ -12,7 +12,7 @@ class QueueSeniorPrioritization:
 
 
     def __init__(self):
-        self.queueLine = []
+        self.queue_line = []
         self.last_senior_queue_index = 0
 
     def add_to_queue(self, customer):
@@ -32,19 +32,19 @@ class QueueSeniorPrioritization:
             if not _is_under_age(customer.age):
                 _remove_prohobited_grocery(customer.groceries)
             if len(customer.groceries) is not 0:
-                self.queueLine.append(customer)
+                self.queue_line.append(customer)
         if _is_senior(customer.age):
             _remove_prohobited_grocery(customer.groceries)
             if len(customer.groceries) is not 0:
-                while self.last_senior_queue_index < len(self.queueLine) and _is_senior(self.queueLine[self.last_senior_queue_index].age):
+                while self.last_senior_queue_index < len(self.queue_line) and _is_senior(self.queue_line[self.last_senior_queue_index].age):
                     self.last_senior_queue_index += 1
-                self.queueLine.insert(self.last_senior_queue_index, customer)
+                self.queue_line.insert(self.last_senior_queue_index, customer)
 
     def get_first_queue(self):
-        return self.queueLine[0]
+        return self.queue_line[0]
 
     def get_last_queue(self):
-        return self.queueLine[-1]
+        return self.queue_line[-1]
 
     def get_queue_length(self):
-        return len(self.queueLine)
+        return len(self.queue_line)
