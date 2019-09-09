@@ -49,7 +49,7 @@ class Queue:
         self.items = []
         self.invalid_items = ["cigarette", "alcohol"]
 
-
+    # Test valid item
     def is_valid_items(self, customer, invalid_items):
         if invalid_items is None:
             return True
@@ -70,7 +70,9 @@ class Queue:
         if ageRange.get("IsPriority"):
             pos = 0
             i = 0
-            while i < len(self.items) and self.items[i].age >= ageRange.get("MinInclusiveAge"):
+            while i < len(self.items) and (
+                self.items[i].age >= ageRange.get("MinInclusiveAge") and 
+                    self.items[i].age < ageRange.get("MaxExclusiveAge")):
                 i += 1
             self.items.insert(i, customer)
         else:
