@@ -6,35 +6,67 @@ class Customer:
 
 class Queue:
     def __init__(self):
-        self.items = []
+        self.queue = []
+        self.prohibited_items = ["cigarette", "alcohol"]
+        self.minimum_age_threshold = 0
+        self.underage_age_threshold = 18
+        self.senior_age_threshold = 62
 
-    # Add new item
-    def add_item(self, x):
-        if x.age < 62:
-            if x.age < 18:
-                for item in x.items:
-                    if item in ["cigarette", "alcohol"]:
+    # customer check function
+    def check_customer_age_validity(self, customer):
+        if customer.age < self.minimum_age_threshold:
+            return False
+        else:
+            return True
+
+    def check_underage_customer(self, customer):
+        if customer.age < self.underage_age_threshold:
+            return True
+        else:
+            return False
+
+    def check_senior_customer(self, customer):
+        if customer.age >= self.senior_age_threshold:
+            return True
+        else:
+            return False
+
+    def check_prohibited_items(self, customer):
+        for item in customer.items:
+            if item in self.prohibited_items:
+                return True
+        return False
+
+    # Add new customer
+    def add_customer(self, customer):
+
+        if self.check_customer_age_validity(customer):
+
+            if not self.check_senior_customer(customer):
+                if self.check_underage_customer(customer):
+                    if self.check_prohibited_items(customer):
                         return
-            self.items.append(x)
-        if x.age >=62:
-            for item in x.items:
-                if item in ["cigarette", "alcohol"]: # prohibited items
+                self.queue.append(customer)
+
+            if self.check_senior_customer(customer):
+                if self.check_prohibited_items(customer):
                     return
-            pos = 0
-            i = 0
-            while i < len(self.items) and self.items[i].age >= 62:
-                i += 1
-            # print(i)
-            self.items.insert(i, x)
+
+                sequence = 0
+
+                while sequence < len(self.queue) and self.queue[sequence].age >= self.senior_age_threshold:
+                    sequence += 1
+
+                self.queue.insert(sequence, customer)
 
     # Return first item
     def first(self):
-        return self.items[0]
+        return self.queue[0]
 
     # Return last item
     def last(self):
-        return self.items[-1]
+        return self.queue[-1]
 
     # Return queue length
     def length(self):
-        return len(self.items)
+        return len(self.queue)
