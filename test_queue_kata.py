@@ -1,4 +1,4 @@
-from QueueSeniorPrioritization_kata import Customer, QueueSeniorPrioritization
+from queue_kata import Customer, QueueSeniorPrioritization
 
 def test_firstlast_happypath():
     q = QueueSeniorPrioritization()
