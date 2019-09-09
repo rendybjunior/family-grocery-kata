@@ -48,8 +48,7 @@ class Queue:
     def __init__(self, invalid_items=["cigarette", "alcohol"]):
         self.items = []
         self.invalid_items = ["cigarette", "alcohol"]
-        # self.under_age = 18
-        self.senior_age = 62
+
 
     def is_valid_items(self, customer, invalid_items):
         if invalid_items is None:
