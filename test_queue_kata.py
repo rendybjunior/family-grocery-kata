@@ -58,7 +58,7 @@ def test_prohibited_items():
     q.add_to_queue(Customer(5, 34, ["milk"]))
     q.add_to_queue(Customer(6, 88, ["soap"]))
 
-    assert [cust.id for cust in q.queueLine] == [6, 2, 4, 5]
+    assert [cust.id for cust in q.queueLine] == [6, 1, 2, 4, 5]
 
 
 def test_all_prohibited():
@@ -67,4 +67,4 @@ def test_all_prohibited():
     q.add_to_queue(Customer(1, 16, ["biscuit", "chips", "alcohol"]))
     q.add_to_queue(Customer(3, 76, ["alcohol"]))
 
-    assert [cust.id for cust in q.queueLine] == []
+    assert [cust.id for cust in q.queueLine] == [1]
