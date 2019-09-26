@@ -1,40 +1,43 @@
 class Customer:
-    def __init__(self, id, age, items):
+    def __init__(self, id, age, cart):
         self.id = id
         self.age = age
-        self.items = items # list of string
+        self.cart = cart
 
 class Queue:
+
+    SENIOR_AGE = 62
+    LEGAL_AGE = 18
+
     def __init__(self):
-        self.items = []
+        self.queue = []
 
-    # Add new item
-    def add_item(self, x):
-        if x.age < 62:
-            if x.age < 18:
-                for item in x.items:
-                    if item in ["cigarette", "alcohol"]:
-                        return
-            self.items.append(x)
-        if x.age >=62:
-            for item in x.items:
-                if item in ["cigarette", "alcohol"]: # prohibited items
-                    return
-            pos = 0
-            i = 0
-            while i < len(self.items) and self.items[i].age >= 62:
-                i += 1
-            # print(i)
-            self.items.insert(i, x)
+    def addQueue(self, customer):
+        if(self.isLegalCustomer(customer)):
+            if customer.age >= self.SENIOR_AGE: self.queue.insert(self.getLastSeniorQueueNumber(), customer)
+            else: self.queue.append(customer)
 
-    # Return first item
-    def first(self):
-        return self.items[0]
+    def getLastSeniorQueueNumber(self):
+        queue_number = 0
+        while queue_number < self.customerCount() and self.queue[queue_number].age >= self.SENIOR_AGE:
+            queue_number += 1
+        return queue_number
 
-    # Return last item
-    def last(self):
-        return self.items[-1]
+    def isLegalCustomer(self, customer):
+        if (customer.age < self.SENIOR_AGE and customer.age >= self.LEGAL_AGE):
+            return True
+        return self.isNotHavingProhibitedItems(customer)
 
-    # Return queue length
-    def length(self):
-        return len(self.items)
+    def isNotHavingProhibitedItems(self, customer):
+        for item in customer.cart:
+            if item in ["cigarette", "alcohol"]: return False
+        return True
+
+    def firstCustomer(self):
+        return self.queue[0]
+
+    def lastCustomer(self):
+        return self.queue[-1]
+
+    def customerCount(self):
+        return len(self.queue)
